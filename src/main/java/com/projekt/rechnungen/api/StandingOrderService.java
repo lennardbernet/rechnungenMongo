@@ -27,12 +27,16 @@ public class StandingOrderService {
     @Transactional
     public List<StandingOrder> saveStandingOrder(StandingOrder standingOrder){
         List<StandingOrder> list = null;
-        try{
-            System.out.println(standingOrder.toString());
-            em.persist(standingOrder);
-            list = getAllStandingOrders();
-        }catch (IllegalArgumentException e){
-            e.printStackTrace();
+        if(standingOrder != null) {
+            try {
+                System.out.println(standingOrder.toString());
+                em.persist(standingOrder);
+                list = getAllStandingOrders();
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }else{
+
         }
         return list;
     }
