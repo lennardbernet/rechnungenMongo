@@ -1,5 +1,6 @@
 package com.projekt.rechnungen.api;
 
+import com.projekt.rechnungen.model.Adress;
 import com.projekt.rechnungen.model.Bill;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,8 @@ public class BillService {
         List<Bill> list = null;
         try{
             System.out.println(bill.toString());
+            em.persist(bill.getAdress());
+            bill.getAdress().setAdressId(em.find(Adress.class, bill.getAdress().getAdressId()).getAdressId());
             em.persist(bill);
             list = getAllBills();
         }catch (IllegalArgumentException e){
@@ -36,5 +39,7 @@ public class BillService {
         }
         return list;
     }
+
+
 
 }
