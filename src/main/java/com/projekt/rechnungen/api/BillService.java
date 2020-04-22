@@ -29,7 +29,6 @@ public class BillService {
     public List<Bill> saveBill(Bill bill){
         List<Bill> list = null;
         try{
-            System.out.println(bill.toString());
             em.persist(bill.getAdress());
             bill.getAdress().setAdressId(em.find(Adress.class, bill.getAdress().getAdressId()).getAdressId());
             em.persist(bill);

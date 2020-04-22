@@ -1,5 +1,6 @@
 package com.projekt.rechnungen.api;
 
+import com.projekt.rechnungen.model.Adress;
 import com.projekt.rechnungen.model.StandingOrder;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,8 @@ public class StandingOrderService {
         List<StandingOrder> list = null;
         if(standingOrder != null) {
             try {
-                System.out.println(standingOrder.toString());
+                em.persist(standingOrder.getAdress());
+                standingOrder.getAdress().setAdressId(em.find(Adress.class, standingOrder.getAdress().getAdressId()).getAdressId());
                 em.persist(standingOrder);
                 list = getAllStandingOrders();
             } catch (IllegalArgumentException e) {
