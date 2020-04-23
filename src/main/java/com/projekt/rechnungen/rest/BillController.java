@@ -2,14 +2,12 @@ package com.projekt.rechnungen.rest;
 
 
 import com.projekt.rechnungen.api.BillService;
-import com.projekt.rechnungen.model.Adress;
 import com.projekt.rechnungen.model.Bill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.List;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -37,6 +35,11 @@ public class BillController {
     public ResponseEntity<List<Bill>> saveBillWithAdress(@RequestBody Bill bill) {
         billService.saveBill(bill);
         return ok(billService.saveBill(bill));
+    }
+
+    @GetMapping(value = "deleteBill/{id}")
+    public void deleteBillById(@PathVariable("id") Integer id) {
+        billService.deleteById(id);
     }
 
 

@@ -1,17 +1,12 @@
 package com.projekt.rechnungen.rest;
 
 import com.projekt.rechnungen.api.StandingOrderService;
-import com.projekt.rechnungen.model.Adress;
-import com.projekt.rechnungen.model.Bill;
 import com.projekt.rechnungen.model.StandingOrder;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.attribute.standard.Media;
-import java.sql.Date;
 import java.util.List;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -37,6 +32,16 @@ public class StandingOrderController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<StandingOrder>> saveStandingOrderWithoutAdress(@RequestBody StandingOrder standingOrder) {
         return ok(standingOrderService.saveStandingOrder(standingOrder));
+    }
+
+    @GetMapping(value = "deleteStandingOrder/{id}")
+    public void deleteStandingOrderById(@PathVariable("id") Integer id) {
+        standingOrderService.deleteById(id);
+    }
+
+    @GetMapping(value = "executeStandingOrder/{id}")
+    public void executeStandingOrderById(@PathVariable("id") Integer id) {
+        standingOrderService.executeStandingOrder(id);
     }
 
 }

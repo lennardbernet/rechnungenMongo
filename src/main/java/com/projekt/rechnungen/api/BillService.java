@@ -40,6 +40,12 @@ public class BillService {
         return list;
     }
 
+    @Transactional
+    public void deleteById(int id){
+        Bill matchedBill = em.find(Bill.class, id);
+        em.remove(matchedBill);
+    }
+
 
 
 }
