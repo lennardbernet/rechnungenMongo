@@ -1,5 +1,6 @@
 package com.projekt.rechnungen.api;
 
+import com.mysql.cj.xdevapi.SqlResult;
 import com.projekt.rechnungen.model.Adress;
 import com.projekt.rechnungen.model.Bill;
 import org.apache.coyote.Response;
@@ -36,7 +37,6 @@ public class BillService {
 
     @Transactional
     public List<Bill> saveBill(Bill bill) {
-
         List<Bill> list = null;
         try {
             em.persist(bill.getAdress());
@@ -62,22 +62,23 @@ public class BillService {
 
     @Transactional
     public void deleteById(int id) {
-        Bill matchedBill;
-        try {
-             matchedBill = em.find(Bill.class, id);
-        }catch (IllegalArgumentException e){
-            e.printStackTrace();
+        Bill matchedBill = null;
+        matchedBill = em.find(Bill.class, id);
+        if (matchedBill == null) {
             throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "Fehler beim finden der Rechnung mit id: "+ id, e
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Keine Rechnung mit id " + id + " gefunden"
             );
-        }
-        try {
-            em.remove(matchedBill);
-        }catch (IllegalArgumentException e){
-            e.printStackTrace();
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR,"Fehler beim löschen der Rechnung mit id: "+id, e
-            );
+
+        } else {
+            try {
+                matchedBill.setBillId(6);
+                em.remove(matchedBill);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                throw new ResponseStatusException(
+                        HttpStatus.INTERNAL_SERVER_ERROR, "Fehler beim löschen der Rechnung mit id: " + id, e
+                );
+            }
         }
     }
 
