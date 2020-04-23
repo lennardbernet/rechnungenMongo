@@ -18,7 +18,8 @@ public class BillService {
     public List<Bill> getAllBills() {
         List<Bill> list = null;
         try {
-            list = em.createQuery("select r from Bill r", Bill.class).getResultList();
+            //list = em.createQuery("select r from Bill r", Bill.class).getResultList();
+            list = em.createNamedQuery("bill.getAllBills",Bill.class).getResultList();
         }catch (IllegalArgumentException e){
             e.printStackTrace();
         }
@@ -32,7 +33,7 @@ public class BillService {
             em.persist(bill.getAdress());
             bill.getAdress().setAdressId(em.find(Adress.class, bill.getAdress().getAdressId()).getAdressId());
             em.persist(bill);
-            list = getAllBills();
+        list = getAllBills();
         }catch (IllegalArgumentException e){
             e.printStackTrace();
         }

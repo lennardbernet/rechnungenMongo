@@ -1,10 +1,15 @@
 package com.projekt.rechnungen.model;
 
+import jdk.jfr.Name;
+
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name="bill")
+@NamedQueries({
+        @NamedQuery(name="bill.getAllBills",query="select b from Bill b"),
+})
 public class Bill {
 
     @Id
@@ -27,7 +32,7 @@ public class Bill {
     @Column(name="date")
     private Date date;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "adress_idfk", referencedColumnName = "adress_id")
     private Adress adress;
 

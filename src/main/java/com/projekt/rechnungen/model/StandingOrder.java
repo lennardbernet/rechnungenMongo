@@ -29,7 +29,7 @@ public class StandingOrder {
     @Column(name = "repetitionrate")
     private String repetitionrate;
 
-    @ManyToOne
+    @OneToOne()
     @JoinColumn(name = "adress_idfk", referencedColumnName = "adress_id")
     private Adress adress;
 
