@@ -27,6 +27,10 @@ public class BillController {
         this.billService = rechnungService;
     }
 
+    public BillController() {
+
+    }
+
     @GetMapping(value = "getAllBills")
     public ResponseEntity<List<Bill>> getAllBills() {
         try {
@@ -35,6 +39,7 @@ public class BillController {
         } catch (ResponseStatusException e) {
             throw e;
         }
+
     }
 
     @PostMapping(value = "saveBill",

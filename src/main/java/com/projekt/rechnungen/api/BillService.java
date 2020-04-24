@@ -68,7 +68,6 @@ public class BillService {
             throw new ResponseStatusException(
                     HttpStatus.INTERNAL_SERVER_ERROR, "Keine Rechnung mit id " + id + " gefunden"
             );
-
         } else {
             try {
                 matchedBill.setBillId(6);
