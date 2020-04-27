@@ -1,4 +1,4 @@
-package com.projekt.rechnungen;
+package com.projekt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

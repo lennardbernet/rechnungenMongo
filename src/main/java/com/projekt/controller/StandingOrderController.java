@@ -1,8 +1,7 @@
-package com.projekt.rechnungen.rest;
+package com.projekt.controller;
 
-import com.projekt.rechnungen.api.StandingOrderService;
-import com.projekt.rechnungen.model.Bill;
-import com.projekt.rechnungen.model.StandingOrder;
+import com.projekt.mysql.api.StandingOrderService;
+import com.projekt.mysql.model.StandingOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +31,6 @@ public class StandingOrderController {
         } catch (ResponseStatusException e) {
             throw e;
         }
-
     }
 
     @PostMapping(value = "saveStandingOrder",

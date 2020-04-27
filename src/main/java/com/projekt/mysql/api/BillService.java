@@ -1,12 +1,8 @@
-package com.projekt.rechnungen.api;
+package com.projekt.mysql.api;
 
-import com.mysql.cj.xdevapi.SqlResult;
-import com.projekt.rechnungen.model.Adress;
-import com.projekt.rechnungen.model.Bill;
-import org.apache.coyote.Response;
-import org.springframework.data.repository.config.RepositoryConfigurationSource;
+import com.projekt.mysql.model.Adress;
+import com.projekt.mysql.model.Bill;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 

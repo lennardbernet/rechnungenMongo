@@ -1,6 +1,4 @@
-package com.projekt.rechnungen.model;
-
-import jdk.jfr.Name;
+package com.projekt.mysql.model;
 
 import javax.persistence.*;
 import java.sql.Date;

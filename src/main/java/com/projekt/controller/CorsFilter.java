@@ -1,4 +1,4 @@
-package com.projekt.rechnungen.rest;
+package com.projekt.controller;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,8 +1,7 @@
-package com.projekt.rechnungen.api;
+package com.projekt.mysql.api;
 
-import com.projekt.rechnungen.model.Adress;
-import com.projekt.rechnungen.model.StandingOrder;
-import org.apache.coyote.Response;
+import com.projekt.mysql.model.Adress;
+import com.projekt.mysql.model.StandingOrder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;

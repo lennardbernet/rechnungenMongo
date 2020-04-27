@@ -1,6 +1,6 @@
-package com.projekt.rechnungen.api;
+package com.projekt.mysql.api;
 
-import com.projekt.rechnungen.model.Adress;
+import com.projekt.mysql.model.Adress;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;

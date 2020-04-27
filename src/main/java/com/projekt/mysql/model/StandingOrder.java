@@ -1,4 +1,4 @@
-package com.projekt.rechnungen.model;
+package com.projekt.mysql.model;
 
 import javax.persistence.*;
 
