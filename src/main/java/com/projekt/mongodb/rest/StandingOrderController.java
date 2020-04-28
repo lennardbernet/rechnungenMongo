@@ -1,7 +1,7 @@
-package com.projekt.mysql.controller;
+package com.projekt.mongodb.rest;
 
-import com.projekt.mysql.api.StandingOrderService;
-import com.projekt.mysql.model.StandingOrder;
+import com.projekt.mongodb.api.StandingOrderService;
+import com.projekt.mongodb.model.StandingOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -45,8 +45,8 @@ public class StandingOrderController {
         }
     }
 
-    @GetMapping(value = "deleteStandingOrder/{id}")
-    public void deleteStandingOrderById(@PathVariable("id") Integer id) {
+    @DeleteMapping(value = "deleteStandingOrder/{id}")
+    public void deleteStandingOrderById(@PathVariable("id") String id) {
         try {
             standingOrderService.deleteById(id);
         } catch (ResponseStatusException e) {
@@ -54,8 +54,8 @@ public class StandingOrderController {
         }
     }
 
-    @GetMapping(value = "executeStandingOrder/{id}")
-    public void executeStandingOrderById(@PathVariable("id") Integer id) {
+    @PutMapping(value = "executeStandingOrder/{id}")
+    public void executeStandingOrderById(@PathVariable("id") String id) {
         try {
             standingOrderService.executeStandingOrder(id);
         } catch (ResponseStatusException e) {

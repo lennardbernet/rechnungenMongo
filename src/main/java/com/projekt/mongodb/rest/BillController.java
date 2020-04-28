@@ -1,4 +1,4 @@
-package com.projekt.mongodb.controller;
+package com.projekt.mongodb.rest;
 
 
 import com.projekt.mongodb.api.BillService;
@@ -51,7 +51,7 @@ public class BillController {
         }
     }
 
-    @GetMapping(value = "deleteBill/{id}")
+    @DeleteMapping(value = "deleteBill/{id}")
     public void deleteBillById(@PathVariable("id") String id) {
         try {
             billService.deleteBillById(id);

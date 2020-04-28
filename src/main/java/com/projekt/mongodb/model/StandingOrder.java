@@ -1,6 +1,6 @@
 package com.projekt.mongodb.model;
 
-import com.projekt.mysql.model.Adress;
+import com.projekt.mongodb.model.Adress;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,16 +14,16 @@ public class StandingOrder {
     private String lastname;
     private String iban;
     private int amount;
-    private int executinos;
+    private int executions;
     private String repetitionrate;
     private Adress adress;
 
-    public StandingOrder(String firstname, String lastname, String iban, int amount, int executinos, String repetitionrate, Adress adress) {
+    public StandingOrder(String firstname, String lastname, String iban, int amount, int executions, String repetitionrate, Adress adress) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.iban = iban;
         this.amount = amount;
-        this.executinos = executinos;
+        this.executions = executions;
         this.repetitionrate = repetitionrate;
         this.adress = adress;
     }
@@ -68,12 +68,12 @@ public class StandingOrder {
         this.amount = amount;
     }
 
-    public int getExecutinos() {
-        return executinos;
+    public int getExecutions() {
+        return executions;
     }
 
-    public void setExecutinos(int executinos) {
-        this.executinos = executinos;
+    public void setExecutions(int executions) {
+        this.executions = executions;
     }
 
     public String getRepetitionrate() {

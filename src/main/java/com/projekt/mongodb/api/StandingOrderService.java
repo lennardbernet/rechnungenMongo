@@ -20,7 +20,8 @@ public class StandingOrderService {
 
     public List<StandingOrder> getAllStandingOrders(){
         try {
-            return standingOrderRepository.findAll();
+            List<StandingOrder> standingOrderList = standingOrderRepository.findAll();
+            return standingOrderList;
         }catch (IllegalArgumentException e){
             e.printStackTrace();
             throw new ResponseStatusException(
@@ -55,11 +56,11 @@ public class StandingOrderService {
     public void executeStandingOrder(String id){
         try {
             StandingOrder standingOrder = standingOrderRepository.findById(id).get();
-            int executions = standingOrder.getExecutinos();
+            int executions = standingOrder.getExecutions();
             if (executions <= 1) {
                 deleteById(id);
             } else {
-                standingOrder.setExecutinos(executions - 1);
+                standingOrder.setExecutions(executions - 1);
                 standingOrderRepository.save(standingOrder);
             }
         }catch (IllegalArgumentException e){

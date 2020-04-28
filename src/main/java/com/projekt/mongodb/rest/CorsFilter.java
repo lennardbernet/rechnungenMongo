@@ -1,4 +1,4 @@
-package com.projekt.mongodb.controller;
+package com.projekt.mongodb.rest;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
