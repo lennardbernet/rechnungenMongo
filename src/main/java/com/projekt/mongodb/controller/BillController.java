@@ -1,8 +1,8 @@
-package com.projekt.controller;
+package com.projekt.mongodb.controller;
 
 
-import com.projekt.mysql.api.BillService;
-import com.projekt.mysql.model.Bill;
+import com.projekt.mongodb.api.BillService;
+import com.projekt.mongodb.model.Bill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -52,9 +52,9 @@ public class BillController {
     }
 
     @GetMapping(value = "deleteBill/{id}")
-    public void deleteBillById(@PathVariable("id") Integer id) {
+    public void deleteBillById(@PathVariable("id") String id) {
         try {
-            billService.deleteById(id);
+            billService.deleteBillById(id);
         }catch (ResponseStatusException e){
             throw e;
         }

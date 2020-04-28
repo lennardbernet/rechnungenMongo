@@ -1,4 +1,4 @@
 package com.projekt.mongodb.model;
 
-public class BillModel {
+public class Bill {
 }

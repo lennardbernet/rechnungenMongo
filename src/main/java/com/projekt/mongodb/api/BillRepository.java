@@ -1,7 +1,7 @@
 package com.projekt.mongodb.api;
 
 
-import com.projekt.mysql.model.Bill;
+import com.projekt.mongodb.model.Bill;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

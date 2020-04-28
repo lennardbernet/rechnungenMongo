@@ -1,4 +1,4 @@
-package com.projekt.controller;
+package com.projekt.mongodb.controller;
 
 import com.projekt.mysql.api.AdressService;
 import com.projekt.mysql.model.Adress;

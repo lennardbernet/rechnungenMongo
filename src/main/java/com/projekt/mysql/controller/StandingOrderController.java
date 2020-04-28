@@ -1,4 +1,4 @@
-package com.projekt.controller;
+package com.projekt.mysql.controller;
 
 import com.projekt.mysql.api.StandingOrderService;
 import com.projekt.mysql.model.StandingOrder;
