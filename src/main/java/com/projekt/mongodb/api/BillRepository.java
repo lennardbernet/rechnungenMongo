@@ -11,4 +11,6 @@ import java.util.List;
 @Repository
 public interface BillRepository extends MongoRepository<Bill, String> {
 
+    @Query("{'firstname': ?0}")
+    List<Bill> findByFirstname(String firstname);
 }

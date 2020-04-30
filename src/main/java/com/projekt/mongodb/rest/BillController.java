@@ -4,12 +4,14 @@ package com.projekt.mongodb.rest;
 import com.projekt.mongodb.api.BillService;
 import com.projekt.mongodb.model.Bill;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -31,9 +33,28 @@ public class BillController {
     @GetMapping(value = "getAllBills")
     public ResponseEntity<List<Bill>> getAllBills() {
         try {
-            List<Bill> list = billService.getAllBills();
-            return ok(list);
-        } catch (ResponseStatusException e) {
+            List<Bill> bills = billService.getAllBills();
+            if (bills == null) {
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            } else {
+                return ResponseEntity.status(HttpStatus.OK).body(bills);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+
+    }
+
+    @GetMapping(value = "findByFirstname/{firstname}")
+    public ResponseEntity<List<Bill>> findByFirstname(@PathVariable("firstname") String firstname) {
+        try {
+            List<Bill> bills = billService.findByFirstname(firstname);
+            if(bills == null){
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            } else {
+                return ResponseEntity.status(HttpStatus.OK).body(bills);
+            }
+        }catch (Exception e){
             throw e;
         }
 
@@ -42,20 +63,21 @@ public class BillController {
     @PostMapping(value = "saveBill",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Bill>> saveBillWithAdress(@RequestBody Bill bill) {
+    public ResponseEntity<List<Bill>> saveBill(@RequestBody Bill bill) {
         try {
             List<Bill> bills = billService.saveBill(bill);
-            return ok(bills);
-        } catch (ResponseStatusException e) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(bills);
+        } catch (Exception e) {
             throw e;
         }
     }
 
     @DeleteMapping(value = "deleteBill/{id}")
-    public void deleteBillById(@PathVariable("id") String id) {
+    public ResponseEntity deleteBillById(@PathVariable("id") String id) {
         try {
             billService.deleteBillById(id);
-        }catch (ResponseStatusException e){
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }catch (Exception e){
             throw e;
         }
     }

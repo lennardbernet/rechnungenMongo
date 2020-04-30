@@ -3,6 +3,7 @@ package com.projekt.mongodb.rest;
 import com.projekt.mongodb.api.StandingOrderService;
 import com.projekt.mongodb.model.StandingOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,12 @@ public class StandingOrderController {
     public ResponseEntity<List<StandingOrder>> getDauerauftragAll() {
         try {
             List<StandingOrder> standingOrders = standingOrderService.getAllStandingOrders();
-            return ok(standingOrders);
+            if(standingOrders.size() == 0){
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            }
+            else {
+                return ok(standingOrders);
+            }
         } catch (ResponseStatusException e) {
             throw e;
         }
@@ -39,25 +45,27 @@ public class StandingOrderController {
     public ResponseEntity<List<StandingOrder>> saveStandingOrderWithoutAdress(@RequestBody StandingOrder standingOrder) {
         try {
             List<StandingOrder> standingOrders = standingOrderService.saveStandingOrder(standingOrder);
-            return ok(standingOrders);
+            return ResponseEntity.status(HttpStatus.CREATED).body(standingOrders);
         } catch (ResponseStatusException e) {
             throw e;
         }
     }
 
     @DeleteMapping(value = "deleteStandingOrder/{id}")
-    public void deleteStandingOrderById(@PathVariable("id") String id) {
+    public ResponseEntity deleteStandingOrderById(@PathVariable("id") String id) {
         try {
             standingOrderService.deleteById(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } catch (ResponseStatusException e) {
             throw e;
         }
     }
 
     @PutMapping(value = "executeStandingOrder/{id}")
-    public void executeStandingOrderById(@PathVariable("id") String id) {
+    public ResponseEntity executeStandingOrderById(@PathVariable("id") String id) {
         try {
             standingOrderService.executeStandingOrder(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } catch (ResponseStatusException e) {
             throw e;
         }

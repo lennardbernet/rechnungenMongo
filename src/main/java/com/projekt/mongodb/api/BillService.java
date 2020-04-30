@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class BillService {
@@ -22,10 +23,21 @@ public class BillService {
     public List<Bill> getAllBills() {
         try {
             return billRepository.findAll();
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "Find All bills failed", e
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error, response code 500", e
+            );
+        }
+    }
+
+    public List<Bill> findByFirstname(String firstname){
+        try {
+            return billRepository.findByFirstname(firstname);
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error, response code 500", e
             );
         }
     }
@@ -34,10 +46,10 @@ public class BillService {
         try {
             billRepository.save(bill);
             return getAllBills();
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "Save bill failed", e
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error, response code 500", e
             );
         }
     }
@@ -45,10 +57,10 @@ public class BillService {
     public void deleteBillById(String id) {
         try {
             billRepository.delete(billRepository.findById(id).get());
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "Delete bill with id " + id + " failed", e
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error, response code 500", e
             );
         }
 

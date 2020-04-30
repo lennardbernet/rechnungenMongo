@@ -22,10 +22,10 @@ public class StandingOrderService {
         try {
             List<StandingOrder> standingOrderList = standingOrderRepository.findAll();
             return standingOrderList;
-        }catch (IllegalArgumentException e){
+        }catch (Exception e){
             e.printStackTrace();
             throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR,"Find all standing orders failed",e
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error, response code 500", e
             );
         }
     }
@@ -34,10 +34,10 @@ public class StandingOrderService {
         try {
             standingOrderRepository.save(standingOrder);
             return getAllStandingOrders();
-        }catch (IllegalArgumentException e){
+        }catch (Exception e){
             e.printStackTrace();
             throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR,"Save standing order failed",e
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error, response code 500", e
             );
         }
     }
@@ -45,10 +45,10 @@ public class StandingOrderService {
     public void deleteById(String id){
         try {
             standingOrderRepository.deleteById(id);
-        }catch (IllegalArgumentException e){
+        }catch (Exception e){
             e.printStackTrace();
             throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "Delete standing order with id "+id+" failed",e
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error, response code 500", e
             );
         }
     }
@@ -63,10 +63,10 @@ public class StandingOrderService {
                 standingOrder.setExecutions(executions - 1);
                 standingOrderRepository.save(standingOrder);
             }
-        }catch (IllegalArgumentException e){
+        }catch (Exception e){
             e.printStackTrace();
             throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "Update standing order failed", e
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error, response code 500", e
             );
         }
     }
